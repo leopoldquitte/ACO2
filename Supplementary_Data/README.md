@@ -25,9 +25,6 @@ Workflow: QM (Gaussian 16) -> RESP -> MCPB.py (`SF4.in`) ->
 `tleap_build.in` -> minimization/heating/equilibration (`MD_preparation/`) ->
 production (`MD/prod.in`, 1 us).
 
-Large derived inputs not tracked here (deposit alongside, e.g. Zenodo):
-`SF4_final.frcmod`, `SF4_final.lib`, `system_ready.pdb`, coordinates/trajectories.
-
 Note: `prod.in` / `disang.rest` provided here are for the bound system
 (atom indices 16057-16064). The apo run used the same restraint scheme on its
 own indices (11408-11411 / 11404-11407), with `cut=9.0` and `barostat=2`.
