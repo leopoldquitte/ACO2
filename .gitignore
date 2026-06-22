@@ -1,0 +1,20 @@
+# Trajectories & restarts -> Zenodo, pas git
+*.nc
+*.rst
+*.mdcrd
+*.crd
+*.inpcrd
+
+# Gaussian / antechamber scratch
+*.chk
+*.fchk
+ANTECHAMBER_*
+ATOMTYPE.INF
+fort.*
+*.tmp
+
+# Backups & divers
+backup_*/
+*.bak
+__pycache__/
+*.log

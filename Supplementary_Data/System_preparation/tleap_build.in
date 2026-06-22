@@ -1,0 +1,33 @@
+# =====================================================================
+# tleap build - ACO2-ARG2 complex (bound system)
+# Source: tleap_final.in (production build, ff14SB / TIP3P)
+# Output: system_final.prmtop / system_final.inpcrd
+# =====================================================================
+
+# 1. Force fields
+source leaprc.protein.ff14SB
+source leaprc.water.tip3p
+
+# 2. Cluster parameters + library (from MCPB.py / RESP, see System_preparation/)
+loadamberparams SF4_final.frcmod
+loadoff SF4_final.lib
+
+# 3. Load the prepared structure (protein complex + [4Fe-4S] cluster)
+complex = loadpdb system_ready.pdb
+
+# 4. Covalent bonds between coordinating cysteines and the cluster
+#    (cluster residue index = 1049 in system_ready.pdb)
+bond complex.347.SG complex.1049.Fe1
+bond complex.413.SG complex.1049.Fe2
+bond complex.410.SG complex.1049.Fe3
+
+# 5. Solvation (truncated octahedron) + neutralization
+solvateOct complex TIP3PBOX 10.0
+addIons complex Na+ 0
+addIons complex Cl- 0
+
+# 6. Sanity check + save
+check complex
+saveamberparm complex system_final.prmtop system_final.inpcrd
+savepdb complex system_final_check.pdb
+quit
